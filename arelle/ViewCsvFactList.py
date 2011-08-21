@@ -19,7 +19,7 @@ class ViewFacts(ViewCsv.View):
 
     def view(self, modelDocument):
         
-        heading = ["Label"]
+        heading = ["Label","conceptId"]
         self.treeCols = 0
         self.tupleDepth(self.modelXbrl.facts, 0)
         for i in range(self.treeCols - 1):
@@ -40,7 +40,7 @@ class ViewFacts(ViewCsv.View):
                 lbl = concept.label(lang=self.lang)
             else:
                 lbl = modelFact.qname
-            cols = indent + [lbl]
+            cols = indent + [lbl,concept.id]
             for i in range(self.treeCols - len(cols)):
                 cols.append(None)
             if concept and not modelFact.concept.isTuple:
